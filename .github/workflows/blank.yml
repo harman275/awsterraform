@@ -42,7 +42,7 @@ jobs:
       run: terraform plan
       # working-directory: ${{ env.TF_WORKING_DIR }}
 
-    - name: 'Terraform Apply'
-      if: github.ref == 'refs/heads/main'
-      run: terraform apply -auto-approve
-      # working-directory: ${{ env.TF_WORKING_DIR }}
+    # - name: 'Terraform Apply'
+    #   if: github.ref == 'refs/heads/main'
+    #   run: terraform apply -auto-approve
+    #   # working-directory: ${{ env.TF_WORKING_DIR }}
