@@ -13,10 +13,10 @@ jobs:
     name: 'Terraform'
     runs-on: ubuntu-latest
 
-    # env:
-    #   TF_WORKING_DIR: ./terraform
-    #   TF_ACTION_WORKING_DIR: ./terraform
-    #   AWS_REGION: us-east-1
+    env:
+      # TF_WORKING_DIR: ./terraform
+      # TF_ACTION_WORKING_DIR: ./terraform
+      AWS_REGION: us-east-1
 
     steps:
     - name: 'Checkout'
