@@ -14,8 +14,6 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      # TF_WORKING_DIR: ./terraform
-      # TF_ACTION_WORKING_DIR: ./terraform
       aws-region: us-east-1
 
     steps:
@@ -36,13 +34,10 @@ jobs:
 
     - name: 'Terraform Init'
       run: terraform init
-      # working-directory: ${{ env.TF_WORKING_DIR }}
 
     - name: 'Terraform Plan'
       run: terraform plan
-      # working-directory: ${{ env.TF_WORKING_DIR }}
 
     # - name: 'Terraform Apply'
     #   if: github.ref == 'refs/heads/main'
     #   run: terraform apply -auto-approve
-    #   # working-directory: ${{ env.TF_WORKING_DIR }}
