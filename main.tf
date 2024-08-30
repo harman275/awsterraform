@@ -3,6 +3,6 @@ resource "aws_instance" "ec2" {
   instance_type = var.instance_type
 
   tags = {
-    Name = "test-instance"
+    Name = "instance-deploy-in-jenkins-pipeline"
   }
 }
