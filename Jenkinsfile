@@ -1,12 +1,12 @@
 pipeline {
     agent any
 
-    // environment {
-    //     TF_WORKSPACE = 'default' // Name of the Terraform workspace
-    //     TF_VAR_region = 'us-west-2' // Example of a Terraform variable (e.g., AWS region)
-    //     AWS_ACCESS_KEY_ID = 'AKIATCKAT2XDWMAPHZHC'  // credentials('aws-access-key-id') // Stored in Jenkins credentials
-    //     AWS_SECRET_ACCESS_KEY = ''  //credentials('aws-secret-access-key') // Stored in Jenkins credentials
-    // }
+    environment {
+        TF_WORKSPACE = 'default' // Name of the Terraform workspace
+        TF_VAR_region = 'us-west-2' // Example of a Terraform variable (e.g., AWS region)
+        AWS_ACCESS_KEY_ID = credentials('aws-access-key-id') // Stored in Jenkins credentials
+        AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key') // Stored in Jenkins credentials
+    }
 
     stages {
         stage('Checkout') {
