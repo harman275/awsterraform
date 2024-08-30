@@ -1,19 +1,58 @@
 pipeline {
     agent any
+
     environment {
-        AWS_ACCESS_KEY_ID = credentials('ABC')  // Using your AWS credentials ID "ABC"
-        AWS_SECRET_ACCESS_KEY = credentials('ABC')  // Using the same ID for the secret access key
+        // Referencing AWS credentials stored in Jenkins with ID 'ABC'
+        AWS_ACCESS_KEY_ID = credentials('ABC')
+        AWS_SECRET_ACCESS_KEY = credentials('ABC')
     }
+
     stages {
+        stage('Checkout') {
+            steps {
+                // Check out the code from the repository
+                checkout scm
+            }
+        }
+
+        stage('Build') {
+            steps {
+                script {
+                    echo 'Building the project...'
+                    // Your build steps, e.g., Maven, Gradle, etc.
+                    // sh 'mvn clean package'
+                }
+            }
+        }
+
         stage('Deploy') {
             steps {
-                // Your AWS CLI or Terraform commands here
-                sh 'aws s3 ls'
+                script {
+                    // Use AWS credentials to execute AWS CLI commands
+                    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'ABC']]) {
+                        // Example: Listing S3 buckets
+                        sh 'aws s3 ls'
+                    }
+                }
             }
         }
     }
-}
 
+    post {
+        always {
+            echo 'Cleaning up...'
+            // Clean up actions, such as deleting temporary files or notifying via email
+        }
+        success {
+            echo 'Pipeline succeeded!'
+            // Actions to perform on success
+        }
+        failure {
+            echo 'Pipeline failed.'
+            // Actions to perform on failure
+        }
+    }
+}
 
 
 // pipeline {
