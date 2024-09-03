@@ -1,12 +1,12 @@
 pipeline {
     agent any
 
-    environment {
-        // TF_WORKSPACE = 'default' // Name of the Terraform workspace
-        // TF_VAR_region = 'us-east-1' // Example of a Terraform variable (e.g., AWS region)
-        AWS_ACCESS_KEY_ID = credentials('ABC') // AWS Access Key ID from Jenkins credentials
-        AWS_SECRET_ACCESS_KEY = credentials('ABC') // AWS Secret Access Key from Jenkins credentials
-    }
+    // environment {
+    //     // TF_WORKSPACE = 'default' // Name of the Terraform workspace
+    //     // TF_VAR_region = 'us-east-1' // Example of a Terraform variable (e.g., AWS region)
+    //     AWS_ACCESS_KEY_ID = credentials('ABC') // AWS Access Key ID from Jenkins credentials
+    //     AWS_SECRET_ACCESS_KEY = credentials('ABC') // AWS Secret Access Key from Jenkins credentials
+    // }
 
     stages {
         stage('Checkout') {
@@ -41,13 +41,13 @@ pipeline {
             }
         }
 
-        stage('Apply Terraform') {
-            steps {
-                echo 'Applying Terraform plan...'
-                // Apply the Terraform plan to create/update infrastructure
-                sh 'terraform apply -input=false tfplan'
-            }
-        }
+        // stage('Apply Terraform') {
+        //     steps {
+        //         echo 'Applying Terraform plan...'
+        //         // Apply the Terraform plan to create/update infrastructure
+        //         sh 'terraform apply -input=false tfplan'
+        //     }
+        // }
 
         // stage('Cleanup') {
         //     steps {
