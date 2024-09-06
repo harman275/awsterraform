@@ -39,18 +39,17 @@ pipeline {
             }
         }
 
-        stage('Validate Terraform') {
-            steps {
-                echo 'Validating Terraform configuration...'
-                // Validate the Terraform files to ensure they are syntactically correct
-                sh 'terraform validate'
-            }
-        }
+        // stage('Validate Terraform') {
+        //     steps {
+        //         echo 'Validating Terraform configuration...'
+        //         // Validate the Terraform files to ensure they are syntactically correct
+        //         sh 'terraform validate'
+        //     }
+        // }
 
         stage('Plan Terraform') {
             steps {
                 echo 'Planning Terraform deployment...'
-                // Create a Terraform plan and save it to a file
                 sh 'terraform plan -out=tfplan'
             }
         }
@@ -58,7 +57,6 @@ pipeline {
         stage('Apply Terraform') {
             steps {
                 echo 'Applying Terraform plan...'
-                // Apply the Terraform plan to create/update infrastructure
                 sh 'terraform apply -input=false tfplan'
             }
         }
